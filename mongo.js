@@ -9,7 +9,7 @@ MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
 
     var collection = db.collection('CS_Umbler');
     //monto o objeto pra ser insrido
-    var docs = [{nome:"Raryson",idade:20}, {nome:"Leonardo",idade:23}, {nome:"Daniel",idade:21}];
+
 
     //dou um insert no objeto
   /*  collection.insert(docs, {w:1}, function(err, result) {

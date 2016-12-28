@@ -2,43 +2,46 @@
    var mongo = require('./mongo.js');
 
   app.get('/',function(req, res){
-      var nome = '', idade = '', listao = '';
+      var nome = '', idade = '', listao = [];
       res.render('index',{
         nome: nome,
         idade: idade,
         listao: listao
       })
   })
-var oi;
+
   app.post('/',function(req, res){
     var name = req.body.nome;
     var idade = req.body.idade;
-
     var pessoa = { nome:name, idade: idade};
     var MongoClient = require('mongodb').MongoClient;
-
-    // Connect to the db
     MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
       if(!err) {
-
           var collection = db.collection('CS_Umbler');
-          collection.find().toArray(function(err, items) {
-
-              for(var i = 0;i<items.length;i++){
-                oi += " "+items[i].nome;
-
-              }
-
+          collection.insert(pessoa, {w:1}, function(err, result) {})
+          const resultadoDoFind = collection.find();
+          resultadoDoFind.toArray(function(err, items) {
+              listao = items;
+              res.render('index', {
+                listao: items
+              })
         });
       }
-    });
-
-    res.render('index',{
-      nome: "O teu nome é " + pessoa.nome,
-      idade: "A tua idade é " +pessoa.idade,
-      listao: oi
+      db.close();
     })
-
-    console.log(pessoa.nome, pessoa.idade);
   })
+
+
+  app.post('/remover',function(req, res){
+    MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+      if(!err) {
+          var collection = db.collection('CS_Umbler');
+          collection.deleteOne({a:1}, function(err, items) {
+          assert.equal(null, err);
+          assert.equal(1, items.deletedCount);  })
+      }
+      db.close();
+    })
+})
+
 }

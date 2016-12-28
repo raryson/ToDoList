@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Index da Aplicação com mongo do raryson</title>
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
   </head>
   <body>
     <h1>Teste de renderização</h1>
@@ -12,11 +13,21 @@
       <input type="submit" id="submit" value="Vai">
 
     </form>
-
-    <p><%= nome %></p>
-    <p><%= idade %></p>
     <h3>Select do banco</h3>
-    <p><%= listao %></p>
+    <ul>
+      <% listao.forEach(function(item) { %>
+          <li>Nome: <%= item.nome %> - Idade: <%= item.idade %> <button  id="remover" onclick ="vai()">Remover</button></li>
+          <script>
+
+              function vai(){
+                console.log('foi')
+                $.post('/remover')
+                 .done((retorno) => $('#resposta').html(retorno))
+                 .fail((error) => $('#resposta').html(error))}
+
+          </script>
+      <% }); %>
+    </ul>
 
   </body>
 </html>
