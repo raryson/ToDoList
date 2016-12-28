@@ -1,0 +1,11 @@
+{
+  "name": "raryson",
+  "version": "1.0.0",
+  "description": "Teste utilizando mongo e node",
+  "main": "index.js",
+  "scripts": {
+    "test": "app"
+  },
+  "author": "",
+  "license": "ISC"
+}
