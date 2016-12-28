@@ -1,3 +1,5 @@
+var MongoClient = require('mongodb').MongoClient;
+
  module.exports = function(app) {
    var mongo = require('./mongo.js');
 
@@ -14,10 +16,9 @@
     var name = req.body.nome;
     var idade = req.body.idade;
     var pessoa = { nome:name, idade: idade};
-    var MongoClient = require('mongodb').MongoClient;
-    MongoClient.connect("mongodb://localhost:27017/exampleDb", function(err, db) {
+    MongoClient.connect("mongodb://localhost:27017/teste", function(err, db) {
       if(!err) {
-          var collection = db.collection('CS_Umbler');
+          var collection = db.collection('Pessoas');
           collection.insert(pessoa, {w:1}, function(err, result) {})
           const resultadoDoFind = collection.find();
           resultadoDoFind.toArray(function(err, items) {
@@ -37,9 +38,14 @@
       if(!err) {
           var collection = db.collection('CS_Umbler');
           collection.deleteOne({a:1}, function(err, items) {
-          assert.equal(null, err);
-          assert.equal(1, items.deletedCount);  })
+            if (err) {
+              res.send(err);
+            }
+
+            res.sendStatus(200);
+          })
       }
+
       db.close();
     })
 })

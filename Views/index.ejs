@@ -17,17 +17,17 @@
     <ul>
       <% listao.forEach(function(item) { %>
           <li>Nome: <%= item.nome %> - Idade: <%= item.idade %> <button  id="remover" onclick ="vai()">Remover</button></li>
-          <script>
-
-              function vai(){
-                console.log('foi')
-                $.post('/remover')
-                 .done((retorno) => $('#resposta').html(retorno))
-                 .fail((error) => $('#resposta').html(error))}
-
-          </script>
       <% }); %>
     </ul>
 
+    <script>
+
+        function vai(){
+          console.log('foi')
+          $.post('/remover')
+           .done((retorno) => $('#resposta').html(retorno))
+           .fail((error) => $('#resposta').html(error))}
+
+    </script>
   </body>
 </html>
