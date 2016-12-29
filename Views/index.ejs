@@ -6,27 +6,42 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
   </head>
   <body>
-    <h1>Teste de renderização</h1>
-    <form class="" action="/" method="post">
-      <label for="nome">Nome:</label><textarea name="nome" rows="1" cols="80"></textarea>
-      <label for="idade">Idade:</label><textarea name="idade" rows="1" cols="80"></textarea>
-      <input type="submit" id="submit" value="Vai">
+    <h1>ToDo List do Raryson</h1>
 
-    </form>
-    <h3>Select do banco</h3>
+      <label for="nome">Nome:</label><textarea name="nome" rows="1" id='nome' cols="80"></textarea>
+      <label for="idade">Idade:</label><textarea name="idade" id='idade' rows="1" cols="80"></textarea>
+      <button id="registrar">Cadastrar</button>
+
+
+    <h3>Lista</h3>
     <ul>
       <% listao.forEach(function(item) { %>
-          <li>Numero: <%= item.numero %> -Nome: <%= item.nome %> - Idade: <%= item.idade %> <button  id="remover" onclick ="vai()">Remover</button></li>
+          <li>Id: <%= item._id %> -  Nome: <%= item.nome %> - Idade: <%= item.idade %> <button  id="remover" onclick ="envioDoRemover('<%= item._id %>')">Remover</button></li>
       <% }); %>
     </ul>
 
     <script>
+        var botaoRegistrar = document.querySelector('#registrar');
+        botaoRegistrar.addEventListener('click',function(){
+           nome  = document.querySelector('#nome').value;
+           idade = document.querySelector('#idade').value;
 
-        function vai(){
-          console.log('foi')
-          $.post('/remover')
-           .done((retorno) => $('#resposta').html(retorno))
-           .fail((error) => $('#resposta').html(error))}
+            function envioDoRegistro(nome, idade){
+             $.post('/adicionar',{nome:nome, idade:idade})
+              .done((retorno) => $('<li>Id: '+retorno.id + ' - Nome: ' +retorno.nome+ ' - Idade:'+ retorno.idade + '</li>').insertAfter("li:last"))
+              .fail((error) => alert(error))}
+
+              envioDoRegistro(nome, idade);
+              $('#nome').val('')
+              $('#idade').val('')
+        })
+
+
+        function envioDoRemover(id){
+          var id = id;
+          $.post('/remover',{id:id})
+           .done((retorno) => $('li:contains("'+id+'")').hide())
+           .fail((error) => alert(error))}
 
     </script>
   </body>
