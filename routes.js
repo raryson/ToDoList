@@ -17,7 +17,7 @@ var ObjectID = require("mongodb").ObjectID;
  }});
    })
 
-  
+
   app.post('/adicionar',function(req, res){
     var name = req.body.nome;
     var idade = req.body.idade;
