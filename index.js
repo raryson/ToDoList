@@ -16,7 +16,7 @@ var route = require('./routes.js')(app);
 
 
 
-
-app.listen(3000,function(){
-  console.log("Rodando na porta 3000")
+var port = process.env.PORT || 8000
+app.listen(port,function(){
+  console.log("Rodando na porta 8000")
 })
