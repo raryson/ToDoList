@@ -4,6 +4,7 @@
   "description": "Teste utilizando mongo e node",
   "main": "index.js",
   "scripts": {
+    "start":"node index.js",
     "test": "app"
   },
   "repository": {
