@@ -5,7 +5,7 @@ var ObjectID = require("mongodb").ObjectID;
    var mongo = require('./mongo.js');
 
    app.get('/', (req, res) => {
-     res.render('olar')
+     res.send('olar')
    })
 
   app.get('/listao',function(req, res){
