@@ -11,11 +11,6 @@ var route = require('./routes.js')(app);
 
 //chamando conexão com o banco
 
-
-
-
-
-
 var port = process.env.PORT || 8000
 app.listen(port,function(){
   console.log("Rodando na porta 8000")
