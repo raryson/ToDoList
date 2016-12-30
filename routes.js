@@ -11,6 +11,8 @@ var ObjectID = require("mongodb").ObjectID;
          const resultadoDoFind = collection.find();
          resultadoDoFind.toArray(function(err, items) {
          listao = items;
+         count = listao.length;
+
          res.render('index')
    });
    db.close();
@@ -19,16 +21,15 @@ var ObjectID = require("mongodb").ObjectID;
 
 
   app.post('/adicionar',function(req, res){
-    var name = req.body.nome;
-    var idade = req.body.idade;
     MongoClient.connect("mongodb://raryson:123456@ds149258.mlab.com:49258/teste", function(err, db) {
       if(!err) {
           var collection = db.collection('Pessoas3')
-          var pessoa = { nome:name, idade: idade};
-          collection.insert(pessoa, function(err, result) {
-            var id = result.insertedIds.toString()
-            var resposta = {nome: name, idade: idade, id: id}
-            res.json(resposta);
+          var objetoElementoASerCadastrado = { elementoAserCadastrado:req.body.elementoAserCadastrado};
+          console.log(objetoElementoASerCadastrado)
+          collection.insert(objetoElementoASerCadastrado, function(err, result) {
+            var idDoObjetoDoMongo = result.insertedIds.toString()
+            var respostaParaOHTML = {elementoAserCadastrado: req.body.elementoAserCadastrado, id: idDoObjetoDoMongo}
+            res.json(respostaParaOHTML);
           })
       }
       db.close();
@@ -45,7 +46,6 @@ var ObjectID = require("mongodb").ObjectID;
             if (err) {
                 res.send(err)
             }
-
             res.sendStatus(200);
               db.close();
 
