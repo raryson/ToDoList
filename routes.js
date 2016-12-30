@@ -4,7 +4,11 @@ var ObjectID = require("mongodb").ObjectID;
  module.exports = function(app) {
    var mongo = require('./mongo.js');
 
-  app.get('/',function(req, res){
+   app.get('/', (req, res) => {
+     res.render('olar')
+   })
+
+  app.get('/listao',function(req, res){
       MongoClient.connect("mongodb://raryson:123456@ds149258.mlab.com:49258/teste", function(err, db) {
         if(!err) {
           var collection = db.collection('Pessoas3')
