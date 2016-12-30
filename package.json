@@ -6,10 +6,11 @@
   "scripts": {
     "test": "app"
   },
-  "engines":{
-	  "node":"7.1.0"
-  },
-  "dependecies":{
+  "repository": {
+  "type": "git",
+  "url": "git://github.com/raryson/NodeMongo.git"
+},
+  "dependencies":{
     "ejs":"2.5.5",
     "express": "4.14.0",
     "body-parser": "1.15.2",
