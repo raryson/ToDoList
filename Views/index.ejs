@@ -28,7 +28,7 @@
 
             function envioDoRegistro(nome, idade){
              $.post('/adicionar',{nome:nome, idade:idade})
-              .done((retorno) => $('<li>Id: '+retorno.id + ' - Nome: ' +retorno.nome+ ' - Idade:'+ retorno.idade + '</li>').insertAfter("li:last"))
+              .done((retorno) => $("li:last").after('<li>Id: '+retorno.id + ' - Nome: ' +retorno.nome+ ' - Idade: '+ retorno.idade + '  <button  id="remover" onclick =envioDoRemover("'+retorno.id+'")>Remover</button></li>'))
               .fail((error) => alert(error))}
 
               envioDoRegistro(nome, idade);
