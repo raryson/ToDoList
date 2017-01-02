@@ -13,7 +13,7 @@ var ObjectID = require("mongodb").ObjectID;
          listao = items;
          count = listao.length;
 
-         res.render('index')
+         res.render('lista/index')
    });
    db.close();
  }});
