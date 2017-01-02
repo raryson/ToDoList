@@ -2,6 +2,33 @@
 <html>
     <% include ../partials/head %>
   <body>
+    <div class="container">
+      <h1>Seja bem vindo ao melhor todoList do mundo!</h1>
+      <label for="email">Digite o teu email: </label>
+      <input type="email" name="email" id="email"></input>
+      <label for="senha">Digite a tua senha:</label>
+      <input type="password" name="senha" id="senha"></input>
+      <button type="button" id="logar">Logar</button>
+      <button type="button" id="recuperar">Alterar a senha</button>
+      <button type="button" id="criar">Criar uma conta</button>
+    </div>
 
+    <script>
+      var buttonLogar = document.querySelector("#logar");
+        buttonLogar.addEventListener('click',function(){
+        var email = document.querySelector('#email').value
+        var senha = document.querySelector('#senha').value
+
+
+      var buttonCriar = document.querySelector('#criar');
+
+
+      var buttonRecuperar = document.querySelector('#recuperar');
+        buttonRecuperar.addEventListener('click',function(){
+          window.location.href = "home/recuperar"
+
+        })
+      })
+    </script>
   </body>
 </html>

@@ -4,6 +4,15 @@ var ObjectID = require("mongodb").ObjectID;
  module.exports = function(app) {
 
 
+   app.get('/home', (req, res) =>{
+     res.render('home/index')
+   })
+
+   app.get('/home/recuperar', (req, res) => {
+     res.render('home/recuperar/index')
+   })
+
+
    app.get('/', (req, res) => {
      MongoClient.connect("mongodb://raryson:123456@ds149258.mlab.com:49258/teste", function(err, db) {
        if(!err) {
