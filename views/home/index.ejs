@@ -2,33 +2,77 @@
 <html>
     <% include ../partials/head %>
   <body>
-    <div class="container">
-      <h1>Seja bem vindo ao melhor todoList do mundo!</h1>
-      <label for="email">Digite o teu email: </label>
-      <input type="email" name="email" id="email"></input>
-      <label for="senha">Digite a tua senha:</label>
-      <input type="password" name="senha" id="senha"></input>
-      <button type="button" id="logar">Logar</button>
-      <button type="button" id="recuperar">Alterar a senha</button>
-      <button type="button" id="criar">Criar uma conta</button>
+        <nav class="menu">
+          <div class="container">
+            <ul class="nav navbar-nav">
+              <div class="dropdown center">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Login
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li>Digite o teu email: <input name="email" id="email" type="email"></input></li>
+                  <li>Digite a tua senha: <input name="password" id="password" type="password"></input></li>
+                  <li><button id="logar">Logar</button></li>
+                  <li><button id="alterar_senha">Alterar Senha</button></li>
+              </ul>
+
+            </ul>
+            <ul class="nav navbar-nav">
+              <div class="dropdown center">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Cadastrar-se
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li>Digite o teu email: <input name="register-email" id="register-email" type="email"></input></li>
+                  <li>Digite a tua senha: <input name="register-password" id="register-password" type="password"></input></li>
+                  <li>Confirme a tua senha: <input name="confirm-register-password" id="confirm-register-password" type="password"></input></li>
+                  <li><button id="registrar">Cadastrar</button></li>
+                </ul>
+            </ul>
+          </div>
+        </nav>
+  <div class="container">
+      <h1 id="headInicial">Seja bem vindo ao melhor todoList do mundo!</h1>
+
+
     </div>
-
     <script>
-      var buttonLogar = document.querySelector("#logar");
-        buttonLogar.addEventListener('click',function(){
-        var email = document.querySelector('#email').value
-        var senha = document.querySelector('#senha').value
+      var botaoLogar = document.querySelector("#logar")
+          botaoRegistrar = document.querySelector("#registrar")
+
+      botaoRegistrar.addEventListener('click',function(){
+
+        function envioRegistro(email, senha){
+         $.post('/registrar',{email :email, senha: senha})
+          .done((retorno) => alert('cadastrado com sucesso'))
+          .fail((error) => alert(error))
+        }
+
+            var register_email = document.querySelector('#register-email').value
+                register_password = document.querySelector('#register-password').value
+                confirm_register_password = document.querySelector('#confirm-register-password').value
+
+           if(register_password == confirm_register_password){
+             envioRegistro(register_email, register_password)
+           }else{
+             alert("As senhas não são iguais")
+           }
+
+          })
 
 
-      var buttonCriar = document.querySelector('#criar');
+      botaoLogar.addEventListener('click',function(){
 
+        function envioLogin(email, senha){
+         $.post('/logar',{email :email, senha: senha})
+          .done((retorno) => {document.cookie = retorno.email; console.log(document.cookie); alert(retorno.email)})
+          .fail((error) => alert(error))
+        }
+        var logar = document.querySelector("#email").value;
+            password = document.querySelector("#password").value;
+            envioLogin(logar, password)
 
-      var buttonRecuperar = document.querySelector('#recuperar');
-        buttonRecuperar.addEventListener('click',function(){
-          window.location.href = "home/recuperar"
-
-        })
       })
+
+
     </script>
   </body>
 </html>

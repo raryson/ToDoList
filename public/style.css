@@ -1,13 +1,11 @@
 button{
   margin-left: 10px;
 }
-#registrar{
-  display:none;
-}
+
 h3{
 
 }
-li{
+.li-lista{
   margin-top: 10px;
 }
 textarea{
@@ -18,4 +16,39 @@ textarea{
 }
 #esconderID{
   display: none;
+}
+.menu{
+  position: fixed;
+  background-color: white;
+  padding: 10px;
+  width: 100%;
+  background-color: gray;
+}
+
+.li-menu{
+  margin-right: 30px;
+}
+#headInicial{
+  padding-top: 50px;
+}
+.dropdown ul{
+  left: 10px;
+  margin-top: 5px;
+}
+.dropdown-menu li{
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+
+}
+
+
+
+
+.center{
+  text-align: center;
+}
+
+.dropdown-menu li button{
+  margin: 5px;
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <% include ../partials/head %>
+  <% include partials/head %>
   <body>
 
     <div class="container">
@@ -10,7 +10,7 @@
     <h4>Lista</h4>
     <ul>
       <% listao.forEach(function(item) {  %>
-          <li id=<%= item._id  %>>O que tu queria lembrar: <%= item.elementoAserCadastrado %><button  id="remover" onclick ="envioDoRemover('<%= item._id %>')">Remover</button></li>
+          <li class="li-lista" id=<%= item._id  %>>O que tu queria lembrar: <%= item.elementoAserCadastrado %><button  id="remover" onclick ="envioDoRemover('<%= item._id %>')">Remover</button></li>
       <% }); %>
     </ul>
 
@@ -25,7 +25,7 @@
            valueElementoASerCadastrado  = document.querySelector('#registro').value;
             function envioDoRegistro(valueElementoASerCadastrado){
              $.post('/adicionar',{elementoAserCadastrado:valueElementoASerCadastrado})
-              .done((retorno) => $('<li id='+retorno.id+'>O que tu queria lembrar: ' +retorno.elementoAserCadastrado+ '<button  id="remover" onclick =envioDoRemover("'+retorno.id+'")>Remover</button></li>').insertAfter("li:last"))
+              .done((retorno) => $('<li class="li-lista" id='+retorno.id+'>O que tu queria lembrar: ' +retorno.elementoAserCadastrado+ '<button  id="remover" onclick =envioDoRemover("'+retorno.id+'")>Remover</button></li>').insertAfter("li:last"))
               .fail((error) => alert(error))}
 
               envioDoRegistro(valueElementoASerCadastrado);
