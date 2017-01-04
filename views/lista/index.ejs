@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
-  <% include partials/head %>
+  <% include ../partials/head %>
   <body>
-
+    <nav class="menu">
+      <div class="container">
+        <button type="logout" name="logout" id="logout">Deslogar</button>
+      </div>
+    </nav>
     <div class="container">
     <h1>To Do List do Raryson</h1>
       <h3>O que tu quer lembrar?</h3><textarea id='registro' placeholder="Se tu apertar enter vai inserir de forma automática"></textarea>
@@ -21,6 +25,12 @@
         });
 
         var botaoRegistrar = document.querySelector('#registrar');
+            botaoLogout = document.querySelector('#logout');
+
+        botaoLogout.addEventListener('click',function(){
+            document.cookie = 'email =; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+            window.location.href= '/';
+        })
         botaoRegistrar.addEventListener('click',function(){
            valueElementoASerCadastrado  = document.querySelector('#registro').value;
             function envioDoRegistro(valueElementoASerCadastrado){
